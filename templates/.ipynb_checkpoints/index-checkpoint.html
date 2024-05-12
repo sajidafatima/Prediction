@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Machine Learning</title>
+  <style>
+     body {
+    background-image: url('staticelectricity.jpg'); /* Replace 'background-image.jpg' with the path to your image */
+    background-size: fixed; /* This ensures the image covers the entire background */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+      }
+      
+    .login {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 auto;
+      width: 50%;
+      max-width: 500px;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .login h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .login input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .prediction {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <h1>Electricity Demand Prediction</h1>
+
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+      <label for="Node">Node:</label>
+<input type="number" name="Node" placeholder="Node" required="required" />
+
+<label for="Utilised_Bandwith_Rate">Utilised Bandwith Rate:</label>
+<input type="number" name="Utilised_Bandwith_Rate" placeholder="Utilised Bandwith Rate" required="required" />
+
+<label for="Packet_Drop_Rate">Packet Drop Rate:</label>
+<input type="number" name="Packet_Drop_Rate" placeholder="Packet Drop Rate" required="required" />
+
+<label for="Full_Bandwidth">Full Bandwidth:</label>
+<input type="number" name="Full_Bandwidth" placeholder="Full Bandwidth" required="required" />
+
+<label for="Average_Delay_Time_Per_Sec">Average Delay Time Per Sec:</label>
+<input type="number" name="Average_Delay_Time_Per_Sec" placeholder="Average Delay Time Per Sec" required="required" />
+
+<label for="Percentage_Of_Lost_Pcaket_Rate">Percentage Of Lost Packet Rate:</label>
+<input type="number" name="Percentage_Of_Lost_Pcaket_Rate" placeholder="Percentage Of Lost Packet Rate" required="required" />
+
+<label for="Percentage_Of_Lost_Byte_Rate">Percentage Of Lost Byte Rate:</label>
+<input type="number" name="Percentage_Of_Lost_Byte_Rate" placeholder="Percentage Of Lost Byte Rate" required="required" />
+
+<label for="Packet_Received_Rate">Packet Received Rate:</label>
+<input type="number" name="Packet_Received_Rate" placeholder="Packet Received Rate" required="required" />
+
+<label for="Of_Used_Bandwidth">Of Used Bandwidth:</label>
+<input type="number" name="Of_Used_Bandwidth" placeholder="Of Used Bandwidth" required="required" />
+
+<label for="Lost_Bandwidth">Lost Bandwidth:</label>
+<input type="number" name="Lost_Bandwidth" placeholder="Lost Bandwidth" required="required" />
+
+<label for="Packet_Size_Byte">Packet Size Byte:</label>
+<input type="number" name="Packet_Size_Byte" placeholder="Packet Size Byte" required="required" />
+
+<label for="Packet_Transmitted">Packet Transmitted:</label>
+<input type="number" name="Packet_Transmitted" placeholder="Packet Transmitted" required="required" />
+
+<label for="Packet_Received">Packet Received:</label>
+<input type="number" name="Packet_Received" placeholder="Packet Received" required="required" />
+
+<label for="Packet_lost">Packet lost:</label>
+<input type="number" name="Packet_lost" placeholder="Packet lost" required="required" />
+
+<label for="Transmitted_Byte">Transmitted Byte:</label>
+<input type="number" name="Transmitted_Byte" placeholder="Transmitted Byte" required="required" />
+
+<label for="Received_Byte">Received Byte:</label>
+<input type="number" name="Received_Byte" placeholder="Received Byte" required="required" />
+
+<label for="10-Run-AVG-Drop-Rate">10-Run-AVG-Drop-Rate:</label>
+<input type="number" name="10-Run-AVG-Drop-Rate" placeholder="10-Run-AVG-Drop-Rate" required="required" />
+
+<label for="10-Run-AVG-Bandwith-Use">10-Run-AVG-Bandwith-Use:</label>
+<input type="number" name="10-Run-AVG-Bandwith-Use" placeholder="10-Run-AVG-Bandwith-Use" required="required" />
+
+<label for="10-Run-Delay">10-Run-Delay:</label>
+<input type="number" name="10-Run-Delay" placeholder="10-Run-Delay" required="required" />
+
+<label for="Node_Status">Node Status:</label>
+<select name="Node_Status" required="required">
+    <option value="0">Active</option>
+    <option value="1">Inactive</option>
+    <option value="2">Active</option>
+    <option value="3">Inactive</option>
+</select>
+
+<label for="Flood_Status">Flood Status:</label>
+<input type="number" name="Flood_Status" placeholder="Flood Status" required="required" />
+
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <div class="prediction">
+      {{ prediction_text }}
+    </div>
+  </div>
+</body>
+</html>

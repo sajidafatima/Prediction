@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Machine Learning</title>
+  <style>
+    body {
+      background-image: url('/static/static-electricity.jpg'); /* Updated image URL */
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .login {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 auto;
+      width: 50%;
+      max-width: 500px;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .login h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .login input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .prediction {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <h1>Electricity Demand Prediction</h1>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+      <input type="number" name="demand" placeholder="Demand (kWh)" required="required" />
+      <input type="number" name="demand_pos_RRP" placeholder="Positive RRP Demand (kWh)" step="any" required="required" />
+      <input type="number" name="demand_neg_RRP" placeholder="Negative RRP Demand (kWh)" step="any" required="required" />
+      <input type="number" name="min_temperature" placeholder="Minimum Temperature (°C)" step="any" required="required" />
+      <input type="number" name="max_temperature" placeholder="Maximum Temperature (°C)" step="any" required="required" />
+      <input type="number" name="solar_exposure" placeholder="Solar Exposure (hours)" step="any" required="required" />
+      <input type="number" name="rainfall" placeholder="Rainfall (mm)" step="any" required="required" />
+      <input type="number" name="school_day" placeholder="School Day (0 for No, 1 for Yes)" min="0" max="1" step="1" required="required" />
+      <input type="number" name="holiday" placeholder="Holiday (0 for No, 1 for Yes)" min="0" max="1" step="1" required="required" />
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <div class="prediction">
+      {{ prediction_text }}
+    </div>
+  </div>
+</body>
+</html>
